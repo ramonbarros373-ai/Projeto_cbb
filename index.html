@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CB-Bandinha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <!-- Função de zoom interativo -->
+    <style>
+        #zoomControls {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1050;
+            display: flex;
+            gap: 8px;
+        }
+
+        @media (max-width: 576px) {
+            #zoomControls {
+                top: auto;
+                bottom: 16px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+
+    <script>
+        let zoomLevel = 1;
+        const zoomStep = 0.1;
+        const minZoom = 0.7;
+        const maxZoom = 2;
+
+        function setZoom(level) {
+            zoomLevel = Math.max(minZoom, Math.min(maxZoom, level));
+            document.body.style.transform = `scale(${zoomLevel})`;
+            document.body.style.transformOrigin = 'top center';
+        }
+
+        document.getElementById('zoomInBtn').onclick = () => setZoom(zoomLevel + zoomStep);
+        document.getElementById('zoomOutBtn').onclick = () => setZoom(zoomLevel - zoomStep);
+        document.getElementById('resetZoomBtn').onclick = () => setZoom(1);
+
+        // Ajusta zoom para dispositivos móveis
+        function autoMobileZoom() {
+            if (window.innerWidth < 576) setZoom(0.9);
+            else setZoom(1);
+        }
+        window.addEventListener('resize', autoMobileZoom);
+        autoMobileZoom();
+    </script>
+    <!-- Cabeçalho -->
+    <header class="bg-danger py-3" id="mainHeader">
+        <div class="container d-flex justify-content-between align-items-center my-3">
+            <!-- titulo -->
+            <h1 class="text-light mb-0" id="headerTitle">Café e Bar Bandinha</h1>
+            
+        <!-- inicio menu interativo -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger rounded">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBandinha"
+                    aria-controls="navbarBandinha" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarBandinha">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <!-- Adicione seus links abaixo -->
+                        <li class="nav-item"><a class="nav-link" href="./cardapio.html">Cardápio</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="contatoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Contato
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="contatoDropdown">
+                                <li>numero wesley</li>
+                                <li>numero maradona</li>
+                                <li>numero maria</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- fim menu interativo -->
+    </header>
+    <!-- Inicio botao -->
+            <!-- mudança de tema/cor -->
+            <button id="toggleTheme" class="btn btn-secondary d-flex align-items-center">
+                <!-- Área para ícone, adicione sua imagem abaixo -->
+                <img src="./img/icones/lampada2.png" alt="Ícone Tema" id="themeIcon"
+                    style="width:24px; height:24px; margin-right:8px;">
+                <!-- texto do botao -->
+            </button>
+        <!-- inicio do script da funçao do  botao -->
+        <script src="./js/script.js"></script>
+        <!-- fim botao -->
+    <!-- 
+        Para mudar a cor do tema do cabeçalho, altere a classe do <header> (ex: bg-primary, bg-dark, bg-light).
+        Para mudar a cor da letra, altere a classe do <h1> (ex: text-white, text-dark).
+        Exemplo: <header class="bg-dark py-3"> ... <h1 class="text-light">Bar Bandinha</h1>
+    -->
+
+    <!-- Corpo -->
+    <main class="flex-grow-1">
+        <div class="container my-4">
+            <div class="text-center">
+                <h2 class="mb-4">Bem-vindo ao Café e Bar Bandinha!</h2>
+                <p>O melhor lugar para curtir bons momentos com amigos e família.</p>
+            </div>
+
+            <!-- Carrossel Bootstrap -->
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div id="carouselExampleIndicators" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="./img/485059900_984271373845665_3991620751893336432_n.jpg"
+                                    class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="./img/485195146_984271433845659_1410825230689829887_n.jpg"
+                                    class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="./img/485674574_984271370512332_1851836335568350677_n.jpg"
+                                    class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="infoBar" class="py-3 rounded text-center bg-dark text-white" style="transition: background 0.3s, color 0.3s;" 
+                onmouseover="showInfoText()" onmouseout="hideInfoText()">
+                <p class="mb-0">Venha conhecer nossas dependencias</p>
+                <span id="hoverText" style="display:none;"> Av. das americas, nº: XXX </span>
+            </div>
+            <script>
+                function updateInfoBarTheme() {
+                   const infoBar = document.getElementById('infoBar');
+                   if (document.body.classList.contains('bg-dark')) {
+                      infoBar.classList.remove('bg-light', 'text-dark');
+                      infoBar.classList.add('bg-dark', 'text-white');
+                   } else {
+                      infoBar.classList.remove('bg-dark', 'text-white');
+                      infoBar.classList.add('bg-light', 'text-dark');
+                   }
+                }
+                // Atualiza barra ao alternar tema
+                toggleBtn.addEventListener('click', updateInfoBarTheme);
+                // Inicializa barra com tema claro
+                updateInfoBarTheme();
+
+                function showInfoText() {
+                   document.getElementById('hoverText').style.display = 'inline';
+                }
+                function hideInfoText() {
+                   document.getElementById('hoverText').style.display = 'none';
+                }
+            </script>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+
+    <footer class="bg-light text-center py-3 mt-auto">
+        <div class="container">
+            <script>
+                function updateFooterTheme() {
+                    const footer = document.querySelector('footer');
+                    if (document.body.classList.contains('bg-dark')) {
+                        footer.classList.remove('bg-light', 'text-dark');
+                        footer.classList.add('bg-dark', 'text-white');
+                    } else {
+                        footer.classList.remove('bg-dark', 'text-white');
+                        footer.classList.add('bg-light', 'text-dark');
+                    }
+                }
+
+                // Atualiza o rodapé ao alternar tema
+                toggleBtn.addEventListener('click', updateFooterTheme);
+
+                // Inicializa o rodapé com tema claro
+                updateFooterTheme();
+            </script>
+            <span>&copy; Criado por RamonBL - 2025</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

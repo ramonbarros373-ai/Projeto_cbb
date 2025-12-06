@@ -1,0 +1,9 @@
+#toggleTheme{
+    position: sticky;
+    top: 90%;
+    left: 90%;
+    z-index: 1000;
+    border-radius: 50px;
+    padding: 10px;
+    width: 50px;
+}
